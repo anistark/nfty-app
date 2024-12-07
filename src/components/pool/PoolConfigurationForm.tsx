@@ -20,10 +20,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { X } from "lucide-react";
 
 const formSchema = z.object({
   poolName: z.string().min(3, "Pool name must be at least 3 characters"),
   description: z.string().min(10, "Description must be at least 10 characters"),
+  network: z.string().min(1, "Please select a network"),
+  nftAddresses: z.array(z.string().regex(/^0x[a-fA-F0-9]{40}$/, "Invalid Ethereum address")),
   platformFee: z.string().regex(/^\d+(\.\d{1,2})?$/, "Enter a valid percentage"),
   managementFee: z.string().regex(/^\d+(\.\d{1,2})?$/, "Enter a valid percentage"),
   performanceFee: z.string().regex(/^\d+(\.\d{1,2})?$/, "Enter a valid percentage"),
@@ -44,6 +54,8 @@ export const PoolConfigurationForm = ({ onSubmit, defaultValues }: PoolConfigura
     defaultValues: {
       poolName: "",
       description: "",
+      network: "",
+      nftAddresses: [],
       platformFee: "2.5",
       managementFee: "2",
       performanceFee: "20",
@@ -52,6 +64,19 @@ export const PoolConfigurationForm = ({ onSubmit, defaultValues }: PoolConfigura
       ...defaultValues,
     },
   });
+
+  const addNFTAddress = () => {
+    const currentAddresses = form.getValues("nftAddresses");
+    form.setValue("nftAddresses", [...currentAddresses, ""]);
+  };
+
+  const removeNFTAddress = (index: number) => {
+    const currentAddresses = form.getValues("nftAddresses");
+    form.setValue(
+      "nftAddresses",
+      currentAddresses.filter((_, i) => i !== index)
+    );
+  };
 
   return (
     <Form {...form}>
@@ -94,6 +119,67 @@ export const PoolConfigurationForm = ({ onSubmit, defaultValues }: PoolConfigura
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="network"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Network</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select network" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="ethereum">Ethereum</SelectItem>
+                      <SelectItem value="polygon">Polygon</SelectItem>
+                      <SelectItem value="base">Base</SelectItem>
+                      <SelectItem value="optimism">Optimism</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <FormLabel>NFT Addresses to Track</FormLabel>
+                <Button type="button" variant="outline" onClick={addNFTAddress}>
+                  Add NFT Address
+                </Button>
+              </div>
+              {form.watch("nftAddresses").map((_, index) => (
+                <FormField
+                  key={index}
+                  control={form.control}
+                  name={`nftAddresses.${index}`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex gap-2">
+                        <FormControl>
+                          <Input
+                            placeholder="Enter NFT contract address (0x...)"
+                            {...field}
+                          />
+                        </FormControl>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => removeNFTAddress(index)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              ))}
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField

@@ -171,15 +171,14 @@ const Index = () => {
             </h2>
             <p className="text-xl text-white/80 mb-8">
               Join thousands of investors who trust NFTy 50 for their NFT
-              investments. Create an account now and access our full suite of
-              investment tools.
+              investments. Create your own pool now and start managing assets.
             </p>
-            <Link to="/profile">
+            <Link to="/create-pool">
               <Button
                 size="lg"
                 className="text-lg px-8 py-6 animate-pulse hover:animate-none"
               >
-                Create Account <ArrowRight className="ml-2" />
+                Start New Pool <ArrowRight className="ml-2" />
               </Button>
             </Link>
           </div>

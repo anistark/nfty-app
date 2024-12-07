@@ -56,7 +56,6 @@ const CreateLiquidityPool = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
