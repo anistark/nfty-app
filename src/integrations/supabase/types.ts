@@ -44,7 +44,9 @@ export type Database = {
       liquidity_pools: {
         Row: {
           apr: number
+          contract_address: string
           created_at: string
+          description: string
           id: string
           lockup_period: string
           management_fee: string
@@ -52,13 +54,17 @@ export type Database = {
           name: string
           performance_fee: string
           slug: string
+          token_contract_address: string
+          token_symbol: string
           tvl: number
           updated_at: string
           utilization: number
         }
         Insert: {
           apr?: number
+          contract_address?: string
           created_at?: string
+          description?: string
           id?: string
           lockup_period?: string
           management_fee?: string
@@ -66,13 +72,17 @@ export type Database = {
           name: string
           performance_fee?: string
           slug: string
+          token_contract_address?: string
+          token_symbol?: string
           tvl?: number
           updated_at?: string
           utilization?: number
         }
         Update: {
           apr?: number
+          contract_address?: string
           created_at?: string
+          description?: string
           id?: string
           lockup_period?: string
           management_fee?: string
@@ -80,11 +90,48 @@ export type Database = {
           name?: string
           performance_fee?: string
           slug?: string
+          token_contract_address?: string
+          token_symbol?: string
           tvl?: number
           updated_at?: string
           utilization?: number
         }
         Relationships: []
+      }
+      pool_assets: {
+        Row: {
+          allocation: number
+          created_at: string
+          id: string
+          name: string
+          pool_id: string
+          updated_at: string
+        }
+        Insert: {
+          allocation?: number
+          created_at?: string
+          id?: string
+          name: string
+          pool_id: string
+          updated_at?: string
+        }
+        Update: {
+          allocation?: number
+          created_at?: string
+          id?: string
+          name?: string
+          pool_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pool_assets_pool_id_fkey"
+            columns: ["pool_id"]
+            isOneToOne: false
+            referencedRelation: "liquidity_pools"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {

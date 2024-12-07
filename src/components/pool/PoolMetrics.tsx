@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 
 interface PoolMetricsProps {
   tvl: string;
@@ -10,6 +12,8 @@ interface PoolMetricsProps {
   managementFee: string;
   performanceFee: string;
   lockupPeriod: string;
+  contractAddress: string;
+  tokenContractAddress: string;
 }
 
 export const PoolMetrics = ({
@@ -20,7 +24,12 @@ export const PoolMetrics = ({
   managementFee,
   performanceFee,
   lockupPeriod,
+  contractAddress,
+  tokenContractAddress,
 }: PoolMetricsProps) => {
+  const etherscanUrl = `https://etherscan.io/address/${contractAddress}`;
+  const tokenEtherscanUrl = `https://etherscan.io/token/${tokenContractAddress}`;
+
   return (
     <Card className="glass">
       <CardHeader>
@@ -44,6 +53,17 @@ export const PoolMetrics = ({
         </div>
         <Separator />
         <div>
+          <div className="flex justify-between mb-2">
+            <span className="text-muted-foreground">Pool Contract</span>
+            <Button
+              variant="link"
+              className="flex items-center gap-2 text-primary p-0 h-auto"
+              onClick={() => window.open(etherscanUrl, '_blank')}
+            >
+              {`${contractAddress.slice(0, 6)}...${contractAddress.slice(-4)}`}
+              <ExternalLink className="h-4 w-4" />
+            </Button>
+          </div>
           <div className="flex justify-between mb-2">
             <span className="text-muted-foreground">Minimum Investment</span>
             <span>{minimumInvestment}</span>

@@ -24,7 +24,8 @@ const PoolDetails = () => {
   const [showRebalanceModal, setShowRebalanceModal] = useState(false);
   const { toast } = useToast();
 
-  const { data: pool, isLoading, error } = useQuery({
+  // Fetch pool details
+  const { data: pool, isLoading: isPoolLoading } = useQuery({
     queryKey: ['pool', poolId],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -38,25 +39,31 @@ const PoolDetails = () => {
     }
   });
 
+  // Fetch pool assets
+  const { data: assets, isLoading: isAssetsLoading } = useQuery({
+    queryKey: ['pool-assets', pool?.id],
+    queryFn: async () => {
+      if (!pool?.id) return [];
+      const { data, error } = await supabase
+        .from('pool_assets')
+        .select('*')
+        .eq('pool_id', pool.id);
+      
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!pool?.id
+  });
+
+  const isLoading = isPoolLoading || isAssetsLoading;
+
   if (isLoading) {
     return <div className="container mx-auto px-4 pt-24">Loading...</div>;
   }
 
-  if (error || !pool) {
+  if (!pool) {
     return <div className="container mx-auto px-4 pt-24">Pool not found</div>;
   }
-
-  // Mock assets data - in a real app, this would come from an API
-  const assets = [
-    { name: "BAYC", allocation: 30 },
-    { name: "CryptoPunks", allocation: 25 },
-    { name: "Azuki", allocation: 20 },
-    { name: "Doodles", allocation: 15 },
-    { name: "CloneX", allocation: 10 },
-  ];
-
-  // Mock contract address - in a real app, this would come from your backend
-  const mockContractAddress = "0x1234567890123456789012345678901234567890";
 
   const handleRebalance = async () => {
     setIsRebalancing(true);
@@ -94,12 +101,12 @@ const PoolDetails = () => {
           </Button>
         </div>
         <p className="text-lg text-muted-foreground mb-8">
-          A curated index of blue-chip NFT collections including BAYC, CryptoPunks, and other established projects.
+          {pool.description}
         </p>
 
         <SynthTokenInfo 
-          symbol={pool.name.replace(" Pool", "").toUpperCase()} 
-          contractAddress={mockContractAddress}
+          symbol={pool.token_symbol} 
+          tokenContractAddress={pool.token_contract_address}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -112,15 +119,17 @@ const PoolDetails = () => {
             managementFee={pool.management_fee}
             performanceFee={pool.performance_fee}
             lockupPeriod={pool.lockup_period}
+            contractAddress={pool.contract_address}
+            tokenContractAddress={pool.token_contract_address}
           />
         </div>
 
-        <AssetAllocation assets={assets} />
+        <AssetAllocation assets={assets || []} />
 
         <RebalanceModal
           open={showRebalanceModal}
           onOpenChange={setShowRebalanceModal}
-          assets={assets}
+          assets={assets || []}
           isRebalancing={isRebalancing}
           onRebalance={handleRebalance}
         />
