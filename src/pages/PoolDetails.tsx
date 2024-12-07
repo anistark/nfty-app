@@ -7,6 +7,7 @@ import { PoolPerformanceChart } from "@/components/pool/PoolPerformanceChart";
 import { PoolMetrics } from "@/components/pool/PoolMetrics";
 import { AssetAllocation } from "@/components/pool/AssetAllocation";
 import { RebalanceModal } from "@/components/pool/RebalanceModal";
+import { SynthTokenInfo } from "@/components/pool/SynthTokenInfo";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -54,6 +55,9 @@ const PoolDetails = () => {
     { name: "CloneX", allocation: 10 },
   ];
 
+  // Mock contract address - in a real app, this would come from your backend
+  const mockContractAddress = "0x1234567890123456789012345678901234567890";
+
   const handleRebalance = async () => {
     setIsRebalancing(true);
     try {
@@ -92,6 +96,11 @@ const PoolDetails = () => {
         <p className="text-lg text-muted-foreground mb-8">
           A curated index of blue-chip NFT collections including BAYC, CryptoPunks, and other established projects.
         </p>
+
+        <SynthTokenInfo 
+          symbol={pool.name.replace(" Pool", "").toUpperCase()} 
+          contractAddress={mockContractAddress}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <PoolPerformanceChart data={generatePerformanceData()} />
