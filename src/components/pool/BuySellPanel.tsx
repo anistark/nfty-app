@@ -20,11 +20,11 @@ interface BuySellPanelProps {
 }
 
 const SUPPORTED_CHAINS = [
+  { id: "84532", name: "Base Sepolia" },
+  { id: "8453", name: "Base" },
   { id: "1", name: "Ethereum" },
   { id: "137", name: "Polygon" },
   { id: "56", name: "BSC" },
-  { id: "42161", name: "Arbitrum" },
-  { id: "10", name: "Optimism" },
 ];
 
 const USDC_CONTRACT_ADDRESS = "0xc48c8f6f4f2a5e277f5d706c18f95fdf5db7b524";
@@ -159,6 +159,14 @@ export const BuySellPanel = ({
             <p className="text-sm text-muted-foreground">
               Token Contract: {tokenContractAddress}
             </p>
+            <a 
+                href={`https://sepolia.basescan.org/token/${tokenContractAddress}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                <ExternalLink className="h-4 w-4" />
+              </a>
           </div>
 
           {isBuying && (
