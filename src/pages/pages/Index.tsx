@@ -74,14 +74,14 @@ const features = [
 ];
 
 const chainLogos = [
-  { name: "Ethereum", logo: "/images/chains/ethereum.svg" },
-  { name: "Bitcoin", logo: "/images/chains/bitcoin.svg" },
-  { name: "Polygon", logo: "/images/chains/polygon.svg" },
-  { name: "BNB Chain", logo: "/images/chains/bnb.svg" },
-  { name: "Base", logo: "/images/chains/base.svg" },
-  { name: "Supra", logo: "/images/chains/supra.svg" },
-  { name: "Arbitrum", logo: "/images/chains/arbitrum.svg" },
-  { name: "Optimism", logo: "/images/chains/optimism.svg" },
+  { name: "Ethereum", logo: "/images/chains/ethereum.png" },
+  { name: "Bitcoin", logo: "/images/chains/bitcoin.png" },
+  { name: "Polygon", logo: "/images/chains/polygon.png" },
+  { name: "BNB Chain", logo: "/images/chains/bnb.png" },
+  { name: "Base", logo: "/images/chains/base.png" },
+  { name: "Supra", logo: "/images/chains/supra.png" },
+  { name: "Arbitrum", logo: "/images/chains/arbitrum.png" },
+  { name: "Optimism", logo: "/images/chains/optimism.png" },
 ];
 
 const Index = () => {
@@ -119,14 +119,40 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Liquidity Pools */}
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold mb-8 text-white">
+            Active Liquidity Pools
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {liquidityPools.map((pool) => (
+              <LiquidityPoolCard
+                key={pool.name}
+                {...pool}
+                performanceData={generateMockPerformanceData()}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Top Performing NFTs */}
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold mb-8 text-white">
+            Top Performing NFTs
+          </h2>
+          <NFTTable nfts={topNFTs} />
+        </section>
+
+        
+
         {/* Chain Abstracted Trade Option Section */}
         <section className="mb-20 py-16 glass rounded-3xl overflow-hidden">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-              Chain Abstracted Trade Option
+              Chain Abstracted First
             </h2>
             <p className="text-xl text-white mb-8">
-              Trade seamlessly across multiple blockchains with our advanced cross-chain infrastructure
+              No more juggling wallets, switching chains, or worrying about which cryptocurrency you hold. Whether it's Ethereum, Base, Solana, or any other blockchain, we'll handle the heavy lifting behind the scenes.
             </p>
           </div>
           
@@ -152,8 +178,29 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Call to Action */}
+        <section className="pb-20 pt-16 glass rounded-3xl text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-6 text-white">
+              Start Your NFT Investment Journey Today
+            </h2>
+            <p className="text-xl text-white/80 mb-8">
+              Join thousands of investors who trust NFTy 50 for their NFT
+              investments. Create your own pool now and start managing assets.
+            </p>
+            <Link to="/create-pool">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 animate-pulse hover:animate-none"
+              >
+                Start New Pool <ArrowRight className="ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </section>
+
         {/* Why NFTy 50 Section */}
-        <section className="mb-20 py-16 glass rounded-3xl">
+        <section className="mt-20 py-20 glass rounded-3xl">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
               Why Choose NFTy 50?
@@ -179,51 +226,6 @@ const Index = () => {
                 </Card>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* Top Performing NFTs */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-8 text-white">
-            Top Performing NFTs
-          </h2>
-          <NFTTable nfts={topNFTs} />
-        </section>
-
-        {/* Liquidity Pools */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-8 text-white">
-            Active Liquidity Pools
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {liquidityPools.map((pool) => (
-              <LiquidityPoolCard
-                key={pool.name}
-                {...pool}
-                performanceData={generateMockPerformanceData()}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Call to Action */}
-        <section className="pb-20 pt-16 glass rounded-3xl text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-6 text-white">
-              Start Your NFT Investment Journey Today
-            </h2>
-            <p className="text-xl text-white/80 mb-8">
-              Join thousands of investors who trust NFTy 50 for their NFT
-              investments. Create your own pool now and start managing assets.
-            </p>
-            <Link to="/create-pool">
-              <Button
-                size="lg"
-                className="text-lg px-8 py-6 animate-pulse hover:animate-none"
-              >
-                Start New Pool <ArrowRight className="ml-2" />
-              </Button>
-            </Link>
           </div>
         </section>
       </div>
