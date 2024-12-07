@@ -28,7 +28,7 @@ export const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="text-xl font-bold text-primary">
-            <img src="/logo.png" alt="NFTy 50" className="h-32" />
+            <img src="/logo.png" alt="NFTy 50" className="h-16" />
           </Link>
           <div className="flex items-center space-x-8">
             <Link to="/" className="text-sm hover:text-primary transition-colors">
