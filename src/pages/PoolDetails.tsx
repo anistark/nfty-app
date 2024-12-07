@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import { Helmet } from 'react-helmet';
+import { PoolChatbot } from "@/components/pool/PoolChatbot";
 
 // Mock performance data - in a real app, this would come from an API
 const generatePerformanceData = () => 
@@ -157,6 +158,7 @@ const PoolDetails = () => {
           />
         </div>
       </div>
+      <PoolChatbot />
     </>
   );
 };
