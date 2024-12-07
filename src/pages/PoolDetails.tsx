@@ -120,7 +120,6 @@ const PoolDetails = () => {
             performanceFee={pool.performance_fee}
             lockupPeriod={pool.lockup_period}
             contractAddress={pool.contract_address}
-            tokenContractAddress={pool.token_contract_address}
           />
         </div>
 

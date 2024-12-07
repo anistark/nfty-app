@@ -13,7 +13,6 @@ interface PoolMetricsProps {
   performanceFee: string;
   lockupPeriod: string;
   contractAddress: string;
-  tokenContractAddress: string;
 }
 
 export const PoolMetrics = ({
@@ -25,10 +24,8 @@ export const PoolMetrics = ({
   performanceFee,
   lockupPeriod,
   contractAddress,
-  tokenContractAddress,
 }: PoolMetricsProps) => {
-  const etherscanUrl = `https://etherscan.io/address/${contractAddress}`;
-  const tokenEtherscanUrl = `https://etherscan.io/token/${tokenContractAddress}`;
+  const etherscanUrl = `https://sepolia.basescan.org/address/${contractAddress}`;
 
   return (
     <Card className="glass">

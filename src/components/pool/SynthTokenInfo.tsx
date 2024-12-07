@@ -8,7 +8,7 @@ interface SynthTokenInfoProps {
 }
 
 export const SynthTokenInfo = ({ symbol, tokenContractAddress }: SynthTokenInfoProps) => {
-  const etherscanUrl = `https://etherscan.io/address/${tokenContractAddress}`;
+  const etherscanUrl = `https://sepolia.basescan.org/address/${tokenContractAddress}`;
 
   return (
     <Card className="glass mb-6">
