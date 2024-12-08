@@ -120,7 +120,6 @@ const PoolDetails = () => {
         />
       </Helmet>
       <div
-        className="container mx-auto px-4 pt-24"
         style={{
           backgroundImage: 'url("/images/pool-background.jpeg")',
           backgroundSize: "cover",
@@ -128,62 +127,64 @@ const PoolDetails = () => {
           backgroundAttachment: "fixed",
         }}
       >
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-4xl font-bold">{pool.name}</h1>
-          </div>
-          <p className="text-lg text-muted-foreground mb-8">
-            {pool.description}
-          </p>
+        <div className="container mx-auto px-4 pt-24">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h1 className="text-4xl font-bold">{pool.name}</h1>
+            </div>
+            <p className="text-lg text-muted-foreground mb-8">
+              {pool.description}
+            </p>
 
-          <BuySellPanel
-            poolName={pool.name}
-            tokenSymbol={pool.token_symbol}
-            tokenContractAddress={pool.token_contract_address}
-          />
+            <BuySellPanel
+              poolName={pool.name}
+              tokenSymbol={pool.token_symbol}
+              tokenContractAddress={pool.token_contract_address}
+            />
 
-          <SynthTokenInfo
-            symbol={pool.token_symbol}
-            tokenContractAddress={pool.token_contract_address}
-          />
+            <SynthTokenInfo
+              symbol={pool.token_symbol}
+              tokenContractAddress={pool.token_contract_address}
+            />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <PoolPerformanceChart data={generatePerformanceData()} />
-            <PoolMetrics
-              tvl={pool.tvl.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}
-              apr={`${pool.apr}%`}
-              utilization={pool.utilization}
-              minimumInvestment={pool.minimum_investment}
-              managementFee={pool.management_fee}
-              performanceFee={pool.performance_fee}
-              lockupPeriod={pool.lockup_period}
-              contractAddress={pool.contract_address}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <PoolPerformanceChart data={generatePerformanceData()} />
+              <PoolMetrics
+                tvl={pool.tvl.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
+                apr={`${pool.apr}%`}
+                utilization={pool.utilization}
+                minimumInvestment={pool.minimum_investment}
+                managementFee={pool.management_fee}
+                performanceFee={pool.performance_fee}
+                lockupPeriod={pool.lockup_period}
+                contractAddress={pool.contract_address}
+              />
+            </div>
+
+            <AssetAllocation assets={assets || []} />
+
+            <div className="flex justify-center mt-12 mb-8">
+              <Button
+                onClick={() => setShowRebalanceModal(true)}
+                className="gap-2"
+                variant="outline"
+              >
+                <RefreshCw className="h-4 w-4" />
+                Rebalance Pool
+              </Button>
+            </div>
+
+            <RebalanceModal
+              open={showRebalanceModal}
+              onOpenChange={setShowRebalanceModal}
+              assets={assets || []}
+              isRebalancing={isRebalancing}
+              onRebalance={handleRebalance}
             />
           </div>
-
-          <AssetAllocation assets={assets || []} />
-
-          <div className="flex justify-center mt-12 mb-8">
-            <Button
-              onClick={() => setShowRebalanceModal(true)}
-              className="gap-2"
-              variant="outline"
-            >
-              <RefreshCw className="h-4 w-4" />
-              Rebalance Pool
-            </Button>
-          </div>
-
-          <RebalanceModal
-            open={showRebalanceModal}
-            onOpenChange={setShowRebalanceModal}
-            assets={assets || []}
-            isRebalancing={isRebalancing}
-            onRebalance={handleRebalance}
-          />
         </div>
       </div>
       <PoolChatbot />

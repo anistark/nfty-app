@@ -41,7 +41,6 @@ const Contact = () => {
           </form>
         </Card>
       </main>
-      <Footer />
     </div>
   );
 };
