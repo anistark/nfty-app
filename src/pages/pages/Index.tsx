@@ -87,7 +87,7 @@ const chainLogos = [
 const Index = () => {
   return (
     <div
-      className="min-h-screen relative"
+      className="min-h-screen relative items-center"
       style={{
         backgroundImage: 'url("/images/background.png")',
         backgroundSize: "cover",
@@ -103,7 +103,7 @@ const Index = () => {
         {/* Hero Section */}
         <section className="text-center mb-20 flex flex-row items-center w-screen">
           <div className="w-1/2">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#ff00ff] to-[#00ffff]">
+            <h1 className="text-4xl md:text-6xl xl:text-[10rem] font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#00ffff]">
               NFTy 50
             </h1>
             <p className="text-xl text-white max-w-2xl mx-auto mb-12">

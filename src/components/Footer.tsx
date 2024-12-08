@@ -25,9 +25,6 @@ export const Footer = () => {
               <li>
                 <Link to="/contact" className="text-sm hover:text-primary transition-colors">Contact</Link>
               </li>
-              <li>
-                <Link to="/synth-token" className="text-sm hover:text-primary transition-colors">$PUNK</Link>
-              </li>
             </ul>
           </div>
           <div>
