@@ -104,7 +104,7 @@ const Index = () => {
         <section className="text-center mb-20 flex flex-row items-center w-screen">
           <div className="w-1/2">
             <h1 className="text-4xl md:text-6xl xl:text-[10rem] font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] to-[#00ffff]">
-              NFTy 50
+              NFTy 500
             </h1>
             <p className="text-xl text-white max-w-2xl mx-auto mb-12">
               Make Smarter Investments with Top NFT Index Funds
@@ -185,7 +185,7 @@ const Index = () => {
               Start Your NFT Investment Journey Today
             </h2>
             <p className="text-xl text-white/80 mb-8">
-              Join thousands of investors who trust NFTy 50 for their NFT
+              Join thousands of investors who trust NFTy 500 for their NFT
               investments. Create your own pool now and start managing assets.
             </p>
             <Link to="/create-pool">
@@ -199,14 +199,14 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Why NFTy 50 Section */}
+        {/* Why NFTy 500 Section */}
         <section className="mt-20 py-20 glass rounded-3xl">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-              Why Choose NFTy 50?
+              Why Choose NFTy 500?
             </h2>
             <p className="text-xl text-white mb-12">
-              NFTy 50 revolutionizes NFT investing by providing a secure,
+              NFTy 500 revolutionizes NFT investing by providing a secure,
               efficient, and user-friendly platform for both newcomers and
               experienced investors.
             </p>

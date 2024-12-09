@@ -1,6 +1,6 @@
-# [Nfty 50](https://nfty50.netlify.app/)
+# [Nfty 500](https://nfty50.netlify.app/)
 
-## DApp for NFT Index Funds
+## NFT Index Fund
 
 ### Development
 
@@ -31,4 +31,5 @@ This project is built with .
 - Vite
 - TypeScript
 - React
+- shadcn-ui
 - Tailwind CSS

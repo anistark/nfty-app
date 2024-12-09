@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">NFTy 50</h3>
+            <h3 className="text-lg font-semibold mb-4">NFTy 500</h3>
             <p className="text-sm text-muted-foreground">
               Make Smarter Investments with Top NFT Index Funds
             </p>
@@ -35,7 +35,7 @@ export const Footer = () => {
               </p>
               <div className="flex space-x-4">
                 <a
-                  href="https://x.com/nfty50"
+                  href="https://x.com/nfty500"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"

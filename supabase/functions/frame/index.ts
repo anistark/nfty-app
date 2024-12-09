@@ -39,7 +39,7 @@ serve(async (req) => {
         image: `${req.headers.get('origin')}/images/punk.jpeg`,
         buttons: [
           {
-            label: 'Visit NFTy 50',
+            label: 'Visit NFTy 500',
             action: 'link',
             target: `${req.headers.get('origin')}/synth-token`,
           },
